@@ -6,14 +6,14 @@
           <!-- Racer Config -->
           <v-col >
             <v-card elevation="2">
-              <v-card-title>Race configuration</v-card-title>
+              <v-card-title>Worker configuration</v-card-title>
               <v-card-text>
                 <v-spacer></v-spacer>        
                 <!-- Racer ID -->
                 <v-slider 
                   :disabled="raceInProgress"
                   v-model="racerId"
-                  label="Racer ID"
+                  label="Worker Id"
                   thumb-color="blue"
                   thumb-label="always"
                   thumb-size="20"
@@ -27,22 +27,22 @@
                   v-model="selectedClassId"
                   item-text="name"
                   item-value="id"
-                  label="Class name"
+                  label="Task name"
                   @change="updatedClassId"
                 ></v-select>
               </v-card-text>
 
               <v-card-actions>
-                <!-- Start race button  -->
+                <!-- Fetch Data button  -->
                 <v-btn
                   elevation="2"
                   outlined
                   @click="startRace()"
                   :disabled="raceInProgress"
-                >Start Race</v-btn>
+                >Fetch Data</v-btn>
                 <v-list-item align="left" >
                   <v-list-item-content>
-                    <v-list-item-title>Current race ID: {{ currentRaceId }}</v-list-item-title>
+                    <v-list-item-title>Current ID: {{ currentRaceId }}</v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
               </v-card-actions>
@@ -93,13 +93,13 @@
       <v-col cols="4" >
         <v-card elevation="2">
           <v-card-title>Leaderboard</v-card-title>
-          <v-card-subtitle>All time results for class {{ selectedClassId }}.</v-card-subtitle>
+          <v-card-subtitle>All time results for Task {{ selectedClassId }}.</v-card-subtitle>
             <v-simple-table fixed-header height="600px">
               <thead>
                 <tr>
                   <th class="text-left"></th>
-                  <th class="text-left">Name/ID</th>
-                  <th class="text-left">Output</th>
+                  <th class="text-left">Name(ID)</th>
+                  <th class="text-left">Accuracy</th>
                 </tr>
               </thead>
               <tbody name="fade" is="transition-group">
@@ -119,7 +119,7 @@
       <!-- Race results -->
       <v-col cols="4">
         <v-card elevation="2">
-          <v-card-title>Race results
+          <v-card-title>Time Range
             <v-select class="mt-2"
               :items="racesForSelectedClassId"
               label="Select race"
@@ -133,8 +133,8 @@
               <thead>
                 <tr>
                   <th class="text-left"></th>
-                  <th class="text-left">Name/ID</th>
-                  <th class="text-left">Output</th>
+                  <th class="text-left">Name(ID)</th>
+                  <th class="text-left">Accuracy</th>
                 </tr>
               </thead>
               <tbody name="fade" is="transition-group">
@@ -154,7 +154,7 @@
       <!-- Race results -->
       <v-col cols="4">
         <v-card elevation="2">
-          <v-card-title>Realtime rankings
+          <v-card-title>Top k / Bottom k
           <v-card-text>
             <v-row align="center" justify="center">
               <!-- v-model="selectedRaceId"               -->
@@ -165,8 +165,8 @@
                 rounded
                 @change="updatedRealtimeToggle"
               >
-                <v-btn>All time</v-btn>
-                <v-btn>Here now</v-btn>
+                <v-btn>Top k</v-btn>
+                <v-btn>Bottom k</v-btn>
               </v-btn-toggle>
             </v-row>
           </v-card-text>
@@ -176,8 +176,8 @@
               <thead>
                 <tr>
                   <th class="text-left"></th>
-                  <th class="text-left">Name/ID</th>
-                  <th class="text-left">Output</th>
+                  <th class="text-left">Name(ID)</th>
+                  <th class="text-left">Accuracy</th>
                 </tr>
               </thead>
               <tbody name="fade" is="transition-group">
@@ -196,8 +196,8 @@
               <thead>
                 <tr>
                   <th class="text-left"></th>
-                  <th class="text-left">Name/ID</th>
-                  <th class="text-left">Output</th>
+                  <th class="text-left">Name(ID)</th>
+                  <th class="text-left">Accuracy</th>
                 </tr>
               </thead>
               <tbody name="fade" is="transition-group">
@@ -301,12 +301,8 @@ export default {
       selectedClassId: 1,
       // List of classes available
       classes: [
-        { id: 1, name: "[1] Beswick's Big Blazer Bikethrow " },
-        { id: 2, name: "[2] Crazy's Chris' Crosstrek Country Climb" },
-        { id: 3, name: "[3] Ben's Boing-Boing Boost Blast" },
-        { id: 4, name: "[4] Julian Jet Jump" },
-        { id: 5, name: "[5] Eric's Extreme étape Escapade" },
-        { id: 6, name: "[6] Talia's Tubeless Tire Time Trial" },
+        { id: 1, name: "[1] EventGen Video" },
+        { id: 2, name: "[2] EventGen Slider" },
       ],
       messages: [],
       // Realtime rankings - all time
