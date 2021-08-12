@@ -1,5 +1,5 @@
 
-# Building serverless applications with streaming data
+# Building serverless applications with streaming data - Hackathon
 
 This example application shows how to build flexible serverless backends for streaming data workloads. This sample application is called *Alleycat*.
 
