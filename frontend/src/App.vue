@@ -5,6 +5,7 @@
       color="blue-grey darken-4"
       dark
     >
+      <!--
       <div class="d-flex align-center">
         <v-img
           alt="Alley Cat"
@@ -15,11 +16,11 @@
           width="200"
         />
       </div>
-
+      -->
       <v-spacer></v-spacer>
 
       <v-btn
-        href="https://github.com/aws-samples/serverless-streaming-data-application"
+        href="https://github.com/axansh/serverless-streaming-data-application"
         target="_blank"
         text
       >
