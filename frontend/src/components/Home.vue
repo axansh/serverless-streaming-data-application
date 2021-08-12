@@ -89,8 +89,8 @@
     </v-row>
 
     <v-row>
-      <!-- Leaderboard -->
-      <v-col cols="4" >
+      <!-- Leaderboard , col value initially 4 for all three cards -->
+      <v-col cols="6" >
         <v-card elevation="2">
           <v-card-title>Leaderboard</v-card-title>
           <v-card-subtitle>All time results for Task {{ selectedClassId }}.</v-card-subtitle>
@@ -117,6 +117,7 @@
       </v-col><!-- Leaderboard -->
 
       <!-- Race results -->
+      <!--   The middle card hidden here
       <v-col cols="4">
         <v-card elevation="2">
           <v-card-title>Time Range
@@ -149,13 +150,27 @@
               </tbody>
             </v-simple-table>          
         </v-card>        
-      </v-col><!-- Race results -->
-
-      <!-- Race results -->
-      <v-col cols="4">
+      </v-col>
+      -->
+      <!-- Realtime rankings -->
+      <v-col cols="6">
         <v-card elevation="2">
-          <v-card-title>Top k / Bottom k
+          <v-card-title> Best and Worst Performers
           <v-card-text>
+            <!-- Adding the dropdown for the time slot selection here-->
+            <v-row align="center" justify="center">
+              <v-select
+                  :disabled="raceInProgress"
+                  :items="times"
+                  v-model="selectedClassId"
+                  item-text="name"
+                  item-value="id"
+                  label="Select Duration"
+                  @change="updatedClassId"
+              ></v-select>
+            </v-row>
+
+
             <v-row align="center" justify="center">
               <!-- v-model="selectedRaceId"               -->
               <!-- @change="updatedRaceId"               -->
@@ -165,8 +180,8 @@
                 rounded
                 @change="updatedRealtimeToggle"
               >
-                <v-btn>Top k</v-btn>
-                <v-btn>Bottom k</v-btn>
+                <v-btn>Top 5</v-btn>
+                <v-btn>Bottom 5</v-btn>
               </v-btn-toggle>
             </v-row>
           </v-card-text>
@@ -190,7 +205,7 @@
                   <td>{{ item.output }}</td>
                 </tr>
               </tbody>
-            </v-simple-table>   
+            </v-simple-table>
           <!-- Show if "Here now" selected -->                   
             <v-simple-table fixed-header height="548px" v-if="realtimeToggle===1">
               <thead>
@@ -210,7 +225,16 @@
                   <td>{{ item.output }}</td>
                 </tr>
               </tbody>
-            </v-simple-table>          
+            </v-simple-table>
+
+            <!-- Adding Button to remove/add the worst/best performers -->
+            <!-- Change @click and :disabled in this btn -->
+            <v-btn
+                elevation="2"
+                outlined
+                @click="startRace()"
+                :disabled="raceInProgress"
+            >Remove</v-btn>
 
         </v-card>        
       </v-col><!-- Realtime rankings -->
@@ -303,6 +327,12 @@ export default {
       classes: [
         { id: 1, name: "[1] EventGen Video" },
         { id: 2, name: "[2] EventGen Slider" },
+      ],
+      times: [
+        { id: 1, name: "Last 1 Week" },
+        { id: 2, name: "Last 2 Weeks" },
+        { id: 3, name: "Last 3 Weeks" },
+        { id: 4, name: "Last 4 Weeks" },
       ],
       messages: [],
       // Realtime rankings - all time
