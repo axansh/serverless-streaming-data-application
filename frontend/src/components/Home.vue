@@ -5,11 +5,15 @@
         <v-row dense>
           <!-- Racer Config -->
           <v-col >
+
+            <!--
+
             <v-card elevation="2">
               <v-card-title>Worker configuration</v-card-title>
               <v-card-text>
-                <v-spacer></v-spacer>        
+                <v-spacer></v-spacer>    -->
                 <!-- Racer ID -->
+                <!--
                 <v-slider 
                   :disabled="raceInProgress"
                   v-model="racerId"
@@ -20,7 +24,9 @@
                   min="1"
                   max="100"
                 ></v-slider>
+                -->
                 <!-- Class name -->
+
                 <v-select 
                   :disabled="raceInProgress"
                   :items="classes"
@@ -30,10 +36,13 @@
                   label="Task name"
                   @change="updatedClassId"
                 ></v-select>
-              </v-card-text>
+            <!--
+            </v-card-text>
 
-              <v-card-actions>
+            <v-card-actions>
+            -->
                 <!-- Fetch Data button  -->
+            <!--
                 <v-btn
                   elevation="2"
                   outlined
@@ -47,18 +56,22 @@
                 </v-list-item>
               </v-card-actions>
             </v-card>
+            -->
 
             <!-- Progress bar showing % race complete -->
+            <!--
             <v-progress-linear
               color="teal"
               buffer-value="0"
               :value="pctComplete"
               stream
               v-show="raceInProgress"
-            ></v-progress-linear>    
+            ></v-progress-linear>
+            -->
           </v-col>
           <!-- Racer Info -->
           <v-col cols="3">
+            <!--
             <v-card max-width="210px" min-width="210px">
               <v-img
                 :src="`https://d28tmfc0jgc6i.cloudfront.net/${this.racerId}.png`"
@@ -72,25 +85,26 @@
                 <v-list-item class="grow">
                   <v-row align="center" justify="end">
                     <v-icon class="mr-1">mdi-camera-timer</v-icon>
-                    <span class="subheading mr-2">{{ currentOutput }}</span>
+                    <span class="subheading mr-2">{{ currentOutput }}</span> -->
+
                     <!-- <span class="mr-1">·</span>
                     <v-icon class="mr-1">
                       mdi-share-variant
                     </v-icon>
                     <span class="subheading">45</span> -->
+            <!--
                   </v-row>
                 </v-list-item>
               </v-card-actions>    
             </v-card>
+            -->
           </v-col>          
         </v-row>
       </v-container>
-
     </v-row>
-
     <v-row>
       <!-- Leaderboard , col value initially 4 for all three cards -->
-      <v-col cols="6" >
+      <v-col cols="4" >
         <v-card elevation="2">
           <v-card-title>Leaderboard</v-card-title>
           <v-card-subtitle>All time results for Task {{ selectedClassId }}.</v-card-subtitle>
@@ -117,7 +131,7 @@
       </v-col><!-- Leaderboard -->
 
       <!-- Race results -->
-      <!--   The middle card hidden here
+
       <v-col cols="4">
         <v-card elevation="2">
           <v-card-title>Time Range
@@ -151,9 +165,8 @@
             </v-simple-table>          
         </v-card>        
       </v-col>
-      -->
       <!-- Realtime rankings -->
-      <v-col cols="6">
+      <v-col cols="4">
         <v-card elevation="2">
           <v-card-title> Best and Worst Performers
           <v-card-text>
